@@ -1,0 +1,8 @@
+Gap Coverage: Checks if company’s paperwork follows exact laws/rules given by the bank. Tools tells if a missing document needs to be added or not.
+
+Cross-document contradiction checking: Checking the companies own documents against each other.
+
+!gap_and_contradiction_pipeline.png
+
+In messages section, there are mainly 3 types, systems, users and assistant
+
