@@ -1,0 +1,25 @@
+VENDOR SERVICES AGREEMENT
+Vendor: NimbusCloud Data Solutions
+Client: Example Bank N.A.
+Effective Date: January 15, 2026
+
+1. SCOPE OF SERVICES
+NimbusCloud Data Solutions ("Vendor") shall provide cloud-based data storage and processing services for Client's customer account records, in accordance with the terms set forth herein.
+
+2. DATA SECURITY
+Vendor shall encrypt all Client customer data at rest and in transit using industry-standard encryption protocols (AES-256 or equivalent). Vendor shall maintain access controls limiting data access to authorized personnel only, and shall log all access to Client data for audit purposes.
+
+3. BREACH NOTIFICATION
+In the event of a data breach affecting Client customer information, Vendor shall notify Client within 72 hours of discovery of the breach. Notification shall include the nature of the breach, the categories of data affected, and remedial steps taken.
+
+4. COMPLAINT HANDLING
+Vendor shall forward any customer complaints received regarding Client's services to Client within 5 business days of receipt. Vendor shall not independently resolve or respond to such complaints without Client's written authorization.
+
+5. SUBCONTRACTING
+Vendor may not engage subcontractors to process Client customer data without prior written consent from Client. Any approved subcontractor shall be bound by data protection obligations no less protective than those set forth in this Agreement.
+
+6. TERM AND TERMINATION
+This Agreement shall remain in effect for an initial term of two (2) years, automatically renewing for successive one-year terms unless either party provides written notice of non-renewal at least 60 days prior to the end of the then-current term.
+
+7. AUDIT RIGHTS
+Client shall have the right to audit Vendor's data security practices and compliance with this Agreement upon reasonable notice, no more than once per calendar year, unless a security incident has occurred.

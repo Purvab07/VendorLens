@@ -1,0 +1,24 @@
+NIMBUSCLOUD DATA SOLUTIONS
+PRIVACY AND DATA HANDLING POLICY
+Last Updated: February 2026
+
+1. OVERVIEW
+This policy describes how NimbusCloud Data Solutions ("NimbusCloud") collects, stores, and processes data on behalf of its business clients and their customers.
+
+2. DATA STORAGE PRACTICES
+Customer data is stored on NimbusCloud's distributed server infrastructure. Data may be temporarily cached in unencrypted form during processing to optimize system performance, before being moved to long-term storage. NimbusCloud reviews its security practices periodically and updates them as needed.
+
+3. ACCESS TO DATA
+NimbusCloud employees and contracted personnel may access customer data as needed to perform support, maintenance, and analytics functions. Access is not restricted to a specific list of authorized individuals, as the size of our support team varies based on business needs.
+
+4. INCIDENT RESPONSE
+In the event of a security incident involving customer data, NimbusCloud will notify affected business clients within 30 days of confirming the incident, in line with industry best practices.
+
+5. CUSTOMER COMPLAINTS
+NimbusCloud may respond directly to end-customer inquiries or complaints received through its support channels in order to provide a timely resolution, and will share a summary with the business client afterward.
+
+6. THIRD-PARTY SERVICE PROVIDERS
+NimbusCloud works with a number of third-party infrastructure and analytics providers to deliver its services. These providers may have access to customer data as part of standard service delivery.
+
+7. CHANGES TO THIS POLICY
+NimbusCloud may update this policy at any time. Continued use of our services constitutes acceptance of the updated policy.

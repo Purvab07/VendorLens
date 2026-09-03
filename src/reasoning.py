@@ -1,21 +1,20 @@
 import ollama
 
 SYSTEM_PROMPT="""
-You are a compliance risk assistant. You compare documents against regulations, or documents against each other, to find gaps or contradictions.
-
-Rules you must follow:
-- Only state something is a problem if you can point to the exact text that shows it.
-- If you are not confident, say "I don't know" instead of guessing.
-- Never invent a citation, regulation or clause. that isn't provided in the text.
-- Kepp answers structured and specific and aoid vague statements.
+You are a compiance risk assistant. You compare documents, against other documents, or against regulations, to find gaps or contradications.
+Rules one must follow:
+- Only state problems which you can prove by using reference material or text from the documents uploaded.
+- If you are not confident about the answer, then do not guess or hallucinate. Just say that "I don't know".
+- Keep answers structured in a specific manner. Do not make if vague or generic.
 """
 
-def ask_model(prompt:str, model:str='llama3.2') -> str:
+def ask_model(prompt:str, model:str='llama3.2'):
     response = ollama.chat(
-        model = model,
+        model=model,
         messages=[
-            {"role": "user", "content":prompt},
-            {"role": "system", "content": SYSTEM_PROMPT}]
+            {'role': 'system', 'content': SYSTEM_PROMPT},
+            {'role': 'user', 'content': prompt}
+        ]
     )
     return response['message']['content']
 
