@@ -7,7 +7,7 @@ import streamlit as st
 from src.embed import add_documents_any, get_collections
 from src.gap_coverage import run_gap_analysis
 from src.contradiction_check import run_contradiction_check
-from src.models import is_flagged
+from src.models import is_flagged, severity_color, highlight_quote
 
 st.set_page_config(page_title="Vendor Risk Checker", page_icon="🛡️", layout="wide")
 
@@ -26,6 +26,42 @@ def clear_collection(name: str):
     existing = collection.get()
     if existing["ids"]:
         collection.delete(ids=existing["ids"])
+
+
+def render_finding(flag, label_a: str, label_b: str):
+    """Renders one finding as a structured, beginner-friendly card with exact quoted sentences."""
+    problem = is_flagged(flag)
+    verdict_badge = f":red[● {flag.verdict}]" if problem else f":green[● {flag.verdict}]"
+    sev_color = severity_color(flag.severity)
+
+    with st.container(border=True):
+        header_col, badge_col = st.columns([3, 1])
+        with header_col:
+            st.markdown(f"### {flag.topic}")
+        with badge_col:
+            st.markdown(f":{sev_color}[**{flag.severity} severity**]")
+            st.markdown(verdict_badge)
+
+        st.markdown(f"🗣️ **In plain terms:** {flag.explanation}")
+
+        if flag.quote_a or flag.quote_b:
+            st.markdown("**The exact sentences involved:**")
+            q_left, q_right = st.columns(2)
+            with q_left:
+                st.markdown(f"*{label_a}:*")
+                st.info(flag.quote_a if flag.quote_a else "No specific sentence identified.")
+            with q_right:
+                st.markdown(f"*{label_b}:*")
+                st.info(flag.quote_b if flag.quote_b else "No specific sentence identified.")
+
+        with st.expander("See the full surrounding text for context"):
+            left, right = st.columns(2)
+            with left:
+                st.markdown(f"**{label_a}**")
+                st.markdown(highlight_quote(flag.text_a, flag.quote_a))
+            with right:
+                st.markdown(f"**{label_b}**")
+                st.markdown(highlight_quote(flag.text_b, flag.quote_b))
 
 
 # --- Sidebar: upload + controls ---
@@ -167,8 +203,8 @@ if st.session_state.results is None:
     st.markdown("## 🛡️ Check a vendor's paperwork automatically")
     st.markdown(
         "Upload a vendor's documents and the regulations they need to follow. "
-        "This tool checks two things: does the vendor's paperwork actually satisfy the law, "
-        "and do the vendor's own documents agree with each other."
+        "This tool checks two things, explained in plain language: does the vendor's paperwork "
+        "actually satisfy the law, and do the vendor's own documents agree with each other."
     )
 
     st.divider()
@@ -182,7 +218,7 @@ if st.session_state.results is None:
         st.write("The tool reads both, compares them by meaning, and checks for gaps and contradictions.")
     with col3:
         st.markdown("### 3️⃣ Review the findings")
-        st.write("Every flag comes with the exact source text it's based on — no unexplained verdicts.")
+        st.write("Each finding shows the exact sentences involved, in plain language, with severity and topic labels.")
 
     st.divider()
 
@@ -227,42 +263,35 @@ else:
 
     st.divider()
 
+    if total_issues > 0:
+        st.markdown(
+            f"**Quick summary:** This vendor has **{gap_issues} regulatory gap(s)** and "
+            f"**{contradiction_issues} contradiction(s)** worth reviewing. "
+            "Each finding below shows the exact sentences involved and a plain-language explanation."
+        )
+    else:
+        st.markdown("**Quick summary:** No gaps or contradictions were found in this run.")
+
+    st.divider()
+
     tab1, tab2 = st.tabs([
         f"📋 Gap Coverage ({len(gap_findings)})",
         f"🔍 Contradictions ({len(contradiction_findings)})"
     ])
 
     with tab1:
+        st.caption("Each card below compares one regulation requirement against the vendor's most relevant document text.")
         if not gap_findings:
             st.write("No regulation chunks were found to check.")
-        for i, flag in enumerate(gap_findings, start=1):
-            badge = ":red[● Gap Found]" if is_flagged(flag) else ":green[● Satisfied]"
-            with st.container(border=True):
-                st.markdown(f"**Requirement {i}** — {badge}")
-                left, right = st.columns(2)
-                with left:
-                    st.markdown("**Regulation**")
-                    st.caption(flag.text_a)
-                with right:
-                    st.markdown("**Vendor excerpt**")
-                    st.caption(flag.text_b)
-                st.markdown(f"💬 {flag.explanation}")
+        for flag in gap_findings:
+            render_finding(flag, label_a="What the regulation requires", label_b="What the vendor's document says")
 
     with tab2:
+        st.caption("Each card below compares two of the vendor's own documents against each other.")
         if not contradiction_findings:
             st.write("Not enough documents to compare (need at least 2).")
-        for i, flag in enumerate(contradiction_findings, start=1):
-            badge = ":red[● Contradiction Found]" if is_flagged(flag) else ":green[● Consistent]"
-            with st.container(border=True):
-                st.markdown(f"**{flag.source_a} vs {flag.source_b}** — {badge}")
-                left, right = st.columns(2)
-                with left:
-                    st.markdown(f"**{flag.source_a}**")
-                    st.caption(flag.text_a)
-                with right:
-                    st.markdown(f"**{flag.source_b}**")
-                    st.caption(flag.text_b)
-                st.markdown(f"💬 {flag.explanation}")
+        for flag in contradiction_findings:
+            render_finding(flag, label_a=flag.source_a, label_b=flag.source_b)
 
     st.divider()
     if st.button("🔄 Start a new analysis"):
