@@ -8,3 +8,21 @@ wheels/
 
 # Virtual environments
 .venv
+
+# This project's actual venv folder name
+venv/
+
+# Environment secrets
+.env
+
+# Vector database (regenerable, local only)
+chroma_db/
+
+# OS files
+.DS_Store
+
+# Editor
+.vscode/
+
+# Test cache
+.pytest_cache/
