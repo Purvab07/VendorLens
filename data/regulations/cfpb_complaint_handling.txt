@@ -1,8 +1,9 @@
-Gap Coverage: Checks if company’s paperwork follows exact laws/rules given by the bank. Tools tells if a missing document needs to be added or not.
+Consumer Financial Protection Bureau Guidance on Complaint Handling
 
-Cross-document contradiction checking: Checking the companies own documents against each other.
+Financial institutions must establish and maintain an effective process for receiving, investigating, and responding to consumer complaints. Institutions shall acknowledge receipt of a written complaint within 15 business days.
 
-!gap_and_contradiction_pipeline.png
+Institutions must maintain a written record of each complaint received, including the date of receipt, the nature of the complaint, and the resolution provided to the consumer.
 
-In messages section, there are mainly 3 types, systems, users and assistant
+If a complaint cannot be resolved within 60 days, the institution must provide the consumer with a written explanation of the delay and an estimated timeline for resolution.
 
+Institutions must not retaliate against a consumer for filing a complaint, and must ensure that complaint-handling staff are not the same individuals whose conduct is the subject of the complaint.
