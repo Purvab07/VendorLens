@@ -4,6 +4,7 @@ aiosignal==1.4.0
 altair==6.2.2
 annotated-doc==0.0.5
 annotated-types==0.8.0
+anthropic==1.0.0
 anyio==4.14.2
 attrs==26.1.0
 bcrypt==5.0.0
@@ -31,6 +32,7 @@ httpx2==2.12.0
 huggingface_hub==1.28.0
 idna==3.19
 importlib_resources==7.1.0
+iniconfig==2.3.0
 itsdangerous==2.2.0
 Jinja2==3.1.6
 jiter==0.16.0
@@ -58,6 +60,7 @@ overrides==7.7.0
 packaging==26.3
 pandas==3.0.5
 pillow==12.3.0
+pluggy==1.6.0
 propcache==0.5.2
 protobuf==7.36.0
 pyarrow==25.0.1
@@ -70,6 +73,7 @@ Pygments==2.21.0
 pypdf==6.16.2
 PyPika==0.51.1
 pyproject_hooks==1.2.0
+pytest==9.1.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.3
 python-multipart==0.0.32
