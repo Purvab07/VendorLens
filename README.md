@@ -1,10 +1,8 @@
 # VendorLens
 
-A small AI-powered tool that checks a vendor's paperwork two ways: whether it actually satisfies the regulations it's supposed to follow, and whether the vendor's own documents agree with each other. Built as a compact demo of the kind of compliance-review product [Kobalt Labs](https://www.kobaltlabs.com/) builds for banks and fintechs.
+A small AI-powered tool that checks a vendor's paperwork two ways: whether it actually satisfies the regulations it's supposed to follow, and whether the vendor's own documents agree with each other.
 
 Every finding comes with the exact sentence it's based on and a plain-language explanation — not just a verdict, since an unexplained AI flag isn't useful to a compliance reviewer.
-
-> **Note:** This is an independent educational/demo project inspired by Kobalt Labs' public product description. It is not affiliated with, endorsed by, or built using any proprietary information from Kobalt Labs.
 
 ## What it checks
 
@@ -116,10 +114,6 @@ These tests cover chunking, response parsing, and helper logic, and don't requir
 - Quoted "exact sentences" rely on a small (3B parameter) local model, which can occasionally paraphrase slightly instead of quoting verbatim. When that happens, the UI falls back to showing the full excerpt without highlighting.
 - Google Doc support works only for documents shared as "Anyone with the link can view," since it uses Google's public export endpoint rather than full Drive API authentication.
 - This is a proof-of-concept, not a production system — mock data, no user auth, no persistence beyond the local Chroma database.
-
-## Why this project
-
-Kobalt Labs' product ingests vendor documents and internal policies, checks them against regulations, and tracks risk over time. This project builds a small working version of that core loop — plus a feature (contradiction checking) that extends it: verifying a vendor's documents are internally consistent with each other, not just individually compliant with the law.
 
 ## Contributing
 
